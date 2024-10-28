@@ -63,8 +63,8 @@ int a_free(Arena *arena);
  *
  *	----------------------------------------------
  *
- *	Arena		*a	- The arena to allocate to.
- *	const char	*str	- The string to be duplicated.
+ *	Arena		*a		- The arena to allocate to.
+ *	const char	*str		- The string to be duplicated.
 */
 char * a_strdup(Arena *a, const char *str);
 
