@@ -35,9 +35,9 @@ typedef struct arena
 Arena a_new(size_t capacity);
 
 /*
- *	Takes an arena, the desired size for the arena and the alignment
- *	of the desired type.
- *
+ *	Allocates some memory in the current Region
+ *	of the Arena and returns it to the user. Memory
+ *	is mapped using mmap.
  *	---------------------------------------------
  *
  *	Arena		*arena		- The arena to allocate to.
