@@ -15,7 +15,7 @@ LIB_SO = $(LIB_DIR)/lib$(LIB_NAME).so
 all: $(LIB_SO)
 
 $(LIB_SO): $(OBJ)
-		$(CC) $(LDFLAGS) -o $@ $^
+	$(CC) $(LDFLAGS) -o $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
