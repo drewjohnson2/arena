@@ -55,10 +55,10 @@ void * a_alloc(Arena *arena, size_t size, size_t alignment)
 		arena->regionsAllocated++;
 	}
 	
+	// align the pointer to the next address that satisfies the alignment constraint
 	uintptr_t current = (uintptr_t)region->data + region->size;
 	uintptr_t aligned = (current + alignment - 1) & ~(alignment - 1);
 
-	// Align memory
 	region->size = aligned - (uintptr_t)region->data + size;
 
 	return (void *)aligned;
