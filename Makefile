@@ -18,6 +18,7 @@ $(LIB_SO): $(OBJ)
 	$(CC) $(LDFLAGS) -o $@ $^
 
 %.o: %.c
+	mkdir -p $(LIB_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
