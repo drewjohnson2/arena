@@ -35,11 +35,11 @@ void * a_alloc(Arena *arena, size_t size, size_t alignment)
 
 	Region *region = arena->region;
 
-	assert(size < region->capacity);
+	assert(size <= region->capacity);
 
 	while (region->next != NULL) region = region->next;
 
-	if (region->size + size >= region->capacity)
+	if (region->size + size > region->capacity)
 	{
 		void *mem = _map_memory(region->capacity);
 		Region *newRegion = malloc(sizeof(Region));
@@ -98,6 +98,30 @@ char * a_strdup(Arena *arena, const char *str)
 	dup[n] = '\0';
 
 	return dup;
+}
+
+int r_free_head(Arena *arena)
+{
+	Region *tmp;
+
+	assert(arena->region != NULL);
+
+	tmp = arena->region;
+	arena->region = arena->region->next;
+
+	int res = munmap(tmp->data, tmp->capacity);
+
+	if (res == -1)
+	{
+		arena_err("Unmap failed.");
+		return res;
+	}
+
+	free(tmp);
+
+	arena->regionsAllocated--;
+
+	return 0;
 }
 
 static void * _map_memory(size_t capacity)

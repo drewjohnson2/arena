@@ -68,4 +68,17 @@ int a_free(Arena *arena);
 */
 char * a_strdup(Arena *a, const char *str);
 
+/*
+ *	Frees the region at the head of the region
+ *	linked list and head->next becomes head.
+ *
+ *	Think of it as a dequeue.
+ *
+ * 	returns 0 on success and -1 on fail.
+ *	----------------------------------------------
+ *	
+ *	Arena		*arena		- The arena to free from.
+*/
+int r_free_head(Arena *arena);
+
 #endif
