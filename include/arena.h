@@ -42,7 +42,7 @@ Arena a_new(size_t capacity);
  *
  *	Arena		*arena		- The arena to allocate to.
  *	size_t		size		- The size of the type to allocate.
- *	size_t		alignment	- The alignment of the given type. (Use _Alignof())
+ *	size_t		alignment	- The alignment of the given type. (Use _Alignof() or __alignof())
  */
 void * a_alloc(Arena *arena, size_t size, size_t alignment);
 

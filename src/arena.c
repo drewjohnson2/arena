@@ -1,4 +1,3 @@
-#include "../include/arena.h"
 #include <assert.h>
 #include <string.h>
 #include <unistd.h>
@@ -6,6 +5,8 @@
 #include <sys/mman.h>
 #include <stdio.h>
 #include <stdint.h>
+
+#include "../include/arena.h"
 
 static void * _map_memory(size_t capacity);
 
@@ -91,7 +92,7 @@ int a_free(Arena *arena)
 char * a_strdup(Arena *arena, const char *str)
 {
 	size_t n = strlen(str);
-	char *dup = (char *)a_alloc(arena, n + 1, _Alignof(char *));
+	char *dup = (char *)a_alloc(arena, n + 1, __alignof(char *));
 
 	memcpy(dup, str, n);
 
